@@ -1,1 +1,110 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quiz Hub</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Applying the Inter font to the whole page */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* A subtle background pattern for visual appeal */
+        .main-bg {
+            background-color: #0a0a0a;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="main-bg text-gray-200">
+
+    <!-- Main Container -->
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-10 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">QuizLink Central</h1>
+            <p class="text-md md:text-lg text-gray-400">A centralized hub for all your quiz applications.</p>
+        </header>
+
+        <!-- Grid for the Link Cards -->
+        <main id="quiz-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Cards will be dynamically inserted here by JavaScript -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-10 md:mt-16 py-6">
+            <p class="text-gray-500">Created to organize all projects in one place.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Array of objects containing the title and URL for each quiz
+        const quizLinks = [
+            { title: "CSMOP Quiz", url: "https://csmop.vercel.app/" },
+            { title: "Regulation of Audit & Accounts Quiz", url: "https://mcqraa.vercel.app/" },
+            { title: "SSC AAO Quiz", url: "https://aaoaequiz.vercel.app/" },
+            { title: "Auditing & Accounting Quiz", url: "https://audstds.vercel.app/" },
+            { title: "Taxation Quiz", url: "https://taxnsupply.vercel.app/" },
+            { title: "GFR Ch.9 - Grants-in-Aid and Loans Quiz", url: "https://gfrch9.vercel.app/" },
+            { title: "GFR Ch.8 - Contract Management Quiz", url: "https://gfrch8.vercel.app/" },
+            { title: "GFR Ch.7 - Inventory Management Quiz", url: "https://gfrch7.vercel.app/" },
+            { title: "GFR Ch.6 - Procurement of Goods & Services Quiz", url: "https://gfrch6.vercel.app/" },
+            { title: "GFR Ch.5 - Works Quiz", url: "https://gfrch5.vercel.app/" },
+            { title: "GFR Ch.4 - Government Accounts Quiz", url: "https://gfrch4.vercel.app/" },
+            { title: "GFR Ch.3 - Budget Formulation & Implementation Quiz", url: "https://gfrch3.vercel.app/" },
+            { title: "GFR Ch.2 - General System of Financial Management", url: "https://gfrch2.vercel.app/" },
+            { title: "CCS (Leave) Rules Quiz", url: "https://ccsleave.vercel.app/" },
+            { title: "FR & SR - General Rules Quiz", url: "https://frsrquiz.vercel.app/" },
+            { title: "LTC Rules Quiz", url: "https://ltcrules.vercel.app/" }
+        ];
+
+        // Get the grid container element
+        const grid = document.getElementById('quiz-grid');
+
+        // Function to create a single card element
+        function createCard(title, url) {
+            // The card is an anchor tag to make the whole area clickable
+            const cardLink = document.createElement('a');
+            cardLink.href = url;
+            cardLink.target = "_blank"; // Open link in a new tab
+            cardLink.rel = "noopener noreferrer";
+            // Tailwind classes for styling the card link
+            cardLink.className = "group block rounded-xl border border-gray-800 bg-gray-900/80 p-6 shadow-lg transition-all duration-300 ease-in-out hover:border-cyan-500/50 hover:shadow-cyan-500/10 hover:-translate-y-1";
+
+            const cardContent = `
+                <div class="flex flex-col justify-between h-full">
+                    <h2 class="text-lg font-semibold text-gray-100 group-hover:text-cyan-400 transition-colors duration-300">
+                        ${title}
+                    </h2>
+                    <div class="mt-4 flex items-center justify-end text-sm font-medium text-gray-500 group-hover:text-cyan-500 transition-colors duration-300">
+                        <span>Visit Quiz</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            `;
+
+            cardLink.innerHTML = cardContent;
+            return cardLink;
+        }
+
+        // Loop through the quizLinks array and append a new card for each item
+        quizLinks.forEach(quiz => {
+            const card = createCard(quiz.title, quiz.url);
+            grid.appendChild(card);
+        });
+    </script>
+
+</body>
+</html>
